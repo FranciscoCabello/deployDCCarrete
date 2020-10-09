@@ -1,0 +1,12 @@
+<div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Editar comentario</h3>
+    </div>
+    <div class="panel-body">
+      <%= render 'form', comentarioservicio: @comentarioservicio %>
+    </div>
+  </div>
+  <%= link_to 'Ver comentario', @comentarioservicio, :class => 'btn btn-default' %>
+  <%= link_to 'Volver', comentarioservicios_path, :class => 'btn btn-default' %>
+</div>

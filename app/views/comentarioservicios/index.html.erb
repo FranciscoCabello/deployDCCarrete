@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comentario servicios</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Comentario</th>
+      <th>Servicio</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comentarioservicios.each do |comentarioservicio| %>
+      <tr>
+        <td><%= comentarioservicio.user %></td>
+        <td><%= comentarioservicio.comentario %></td>
+        <td><%= comentarioservicio.servicio %></td>
+        <td><%= link_to 'Show', comentarioservicio, :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_comentarioservicio_path(comentarioservicio), :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', comentarioservicio, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

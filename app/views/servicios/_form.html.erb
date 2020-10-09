@@ -1,0 +1,67 @@
+<%= form_with(model: servicio, local: true, :class => 'form-horizontal') do |form| %>
+  <% if servicio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(servicio.errors.count, "error") %> prohibited this servicio from being saved:</h2>
+
+      <ul>
+      <% servicio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :nombre, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :nombre, :class => "form-control", :placeholder => "Marca del servicio"   %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :descripcion, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :descripcion, :class => "form-control", :placeholder => "Breve descripcion del servicio"   %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :capacidad, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.number_field :capacidad, :class => "form-control", :placeholder => "100 (Numero mayor a 0)"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :costo, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.number_field :costo, :class => "form-control", :placeholder => "CLP"   %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :valoracion, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.select :valoracion,[1,2,3,4,5,6,7,8,9,10], :class => "form-control"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :imagen, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :imagen, :class => "form-control", :placeholder => "URL" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :categoria, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.select :categoria, ['Alcohol', 'Limpieza', 'Musica', 'Iluminacion', 'Animacion', 'Otros'], :class => "form-control"  %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", :class => "btn btn-default" %>
+    <%= link_to 'Cancelar', servicios_path , :class => 'btn btn-danger'%>
+  </div>
+<% end %>

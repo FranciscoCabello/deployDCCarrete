@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Servicios</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Imagen</th>
+      <th>Nombre</th>
+      <th>Descripcion</th>
+      <th>Capacidad</th>
+      <th>Costo</th>
+      <th>Valoracion</th>
+      <th>Categoria</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if current_user %>
+      <% @servicios.each do |servicio| %>
+        <tr>
+          <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
+          <td><%= servicio.nombre %></td>
+          <td><%= servicio.descripcion %></td>
+          <td><%= servicio.capacidad %></td>
+          <td><%= servicio.costo %></td>
+          <td><%= servicio.valoracion %></td>
+          <td><%= servicio.categoria %></td>
+          <td><%= servicio.user %></td>
+          <% if @bool == '0' %>
+            <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
+            <td><%= link_to 'Edit', edit_servicio_path(servicio), :class => 'btn btn-default' %></td>
+            <td><%= link_to 'Destroy', servicio, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+          <% else %>
+            <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    <% else %>
+      <% @servicios.each do |servicio| %>
+        <tr>
+          <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
+          <td><%= servicio.nombre %></td>
+          <td><%= servicio.descripcion %></td>
+          <td><%= servicio.capacidad %></td>
+          <td><%= servicio.costo %></td>
+          <td><%= servicio.valoracion %></td>
+          <td><%= servicio.categoria %></td>
+          <td><%= servicio.user %></td>
+          <td><%= link_to 'Show', servicio, :class => 'btn btn-default' %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% if current_user %>
+  <%= link_to 'New Servicio', new_servicio_path, :class => 'btn btn-default'%>
+<% end %>

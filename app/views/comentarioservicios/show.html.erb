@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Comentario servicio <%= @comentarioservicio.servicio %></h3>
+    </div>
+    <br>
+    <dl class="dl-horizontal">
+      <dt>Usuario:</dt>
+      <dd><%= @comentarioservicio.user %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Comentario:</dt>
+      <dd><%= @comentarioservicio.comentario %></dd>
+    </dl>
+  </div>
+  <%= link_to 'Edit', edit_comentarioservicio_path(@comentarioservicio), :class => 'btn btn-default' %>
+  <%= link_to 'Back', comentarioservicios_path, :class => 'btn btn-default' %>
+</div>
+<p>

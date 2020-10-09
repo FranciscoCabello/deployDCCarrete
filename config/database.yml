@@ -1,0 +1,22 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  username: postgres
+  password: grupo14software
+  pool: 5
+
+production:
+  database: dcosg80e0vo8gg
+  host: ec2-34-235-62-201.compute-1.amazonaws.com
+  username: qpkmnmxnutfotz
+  password: 8e5804e509aeffcdde7373dd747c2698755db671663289f6d3100a1dde0a8f50
+  port: 5432
+
+development:
+  <<: *default
+  database: grupo14_development
+
+test:
+  <<: *default
+  database: grupo14_test

@@ -1,0 +1,30 @@
+<h1>INICIO</h1>
+
+<% if current_user %>
+    <p>Esta es una página para encontrar los mejores carretes.</p>
+    <%= link_to 'Ver Carretes de otros usuarios', carretes_path(:bool => 1) %>
+    <br>
+    <%= link_to 'Ver Servicios disponibles', servicios_path(:bool => 1) %>
+    <br>
+    <br>
+    <%= link_to 'Ver carretes inscritos', carretes_path(:bool => 2) %>
+<% else %>
+    <p>Esta es una página para encontrar los mejores carretes.</p>
+<% end %>
+
+<footer>
+  <div class="container-fluid">
+    <address>
+      <strong>DCCarrte, Inc.</strong><br>
+      Campus San Joaquin<br>
+      Santiago, Chile <br>
+      <abbr title="Phone">Phone:</abbr> (+56) 9 62521856
+    </address>
+
+    <address>
+      <strong>Full Name</strong><br>
+      <a href="">dccarrete@uc.cl</a>
+    </address>
+  </div>
+</footer>
+

@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+<div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Informacion Servicio: <%= @servicio.nombre %> - <%= image_tag(@servicio.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></h3>
+    </div>
+    <br>
+    <dl class="dl-horizontal">
+      <dt>Categoria:</dt>
+      <dd><%= @servicio.categoria %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Capacidad:</dt>
+      <dd><%= @servicio.capacidad %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Costo:</dt>
+      <dd><%= @servicio.costo %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Valoracion:</dt>
+      <dd><%= @servicio.valoracion %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Descripcion:</dt>
+      <dd><%= @servicio.descripcion %></dd>
+    </dl>
+
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Comentarios</h3>
+    </div>
+    <br>
+    <ul>
+      <% @comentarios.each do |comentario|%>
+        <li><%= comentario.comentario %></li>
+      <% end %>
+    </ul>
+  </div>
+  <%= link_to 'Edit', edit_servicio_path(@servicio), :class => 'btn btn-default' %>
+  <%= link_to 'Back', servicios_path(:bool => @bool), :class => 'btn btn-default' %>
+  <%= link_to 'Comentar', new_comentarioservicio_path(:servicio => @servicio), :class => "btn btn-default" %>
+</div>

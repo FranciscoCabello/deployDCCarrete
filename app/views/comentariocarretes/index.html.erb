@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Comentariocarretes</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Comentario</th>
+      <th>Carrete</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @comentariocarretes.each do |comentariocarrete| %>
+      <tr>
+        <td><%= comentariocarrete.user %></td>
+        <td><%= comentariocarrete.comentario %></td>
+        <td><%= comentariocarrete.carrete %></td>
+        <td><%= link_to 'Show', comentariocarrete, :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Edit', edit_comentariocarrete_path(comentariocarrete), :class => 'btn btn-default' %></td>
+        <td><%= link_to 'Destroy', comentariocarrete, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Comentariocarrete', new_comentariocarrete_path, :class => 'btn btn-default' %>

@@ -1,0 +1,68 @@
+<%= form_with(model: carrete, local: true, :class => 'form-horizontal') do |form| %>
+  <% if carrete.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(carrete.errors.count, "error") %> prohibited this carrete from being saved:</h2>
+
+      <ul>
+      <% carrete.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :titulo, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :titulo, :class => "form-control", :placeholder => "Ejemplo: Carrete masivo" %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :descripcion, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :descripcion, :class => "form-control", :placeholder => "Ejemplo: El mejor carrete del lugar"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :direccion, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :direccion, :class => "form-control", :placeholder => "Ejemplo: Avenida vitacura 254, Las condes"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :capacidad, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.number_field :capacidad, :class => "form-control", :placeholder => "Ejemplo: 100 (Numero mayor a 0)"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :costo, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.number_field :costo, :class => "form-control", :placeholder => "Ejemplo: 100 (Numero mayor a 0)"  %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :estado, :class => "col-sm-2 control-label"%>
+    <div class="col-sm-10">
+      <%= form.select :estado, [0, 1], :class => "form-control" %>
+      (0: En apuesta, 1: Realizado)
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :imagen, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_field :imagen, :class => "form-control", :placeholder => "URL" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", :class => 'btn btn-default'%>
+    <%= link_to 'Back', carretes_path, :class => 'btn btn-danger' %>
+  </div>
+<% end %>

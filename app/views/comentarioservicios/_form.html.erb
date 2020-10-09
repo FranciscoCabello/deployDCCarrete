@@ -1,0 +1,24 @@
+<%= form_with(model: comentarioservicio, url: comentarioservicios_create_path(:servicio => @servicio), :class => 'form-horizontal', local: true) do |form| %>
+  <% if comentarioservicio.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comentarioservicio.errors.count, "error") %> prohibited this comentarioservicio from being saved:</h2>
+
+      <ul>
+      <% comentarioservicio.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :comentario, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :comentario, :class => "form-control", :placeholder => "Ejemplo: Fue un excelente servicio" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", :class => "btn btn-default" %>
+  </div>
+<% end %>

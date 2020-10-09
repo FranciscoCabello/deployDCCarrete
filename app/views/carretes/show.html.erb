@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Informacion Carrete: <%= @carrete.titulo %> - <%= image_tag(@carrete.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></h3>
+    </div>
+    <br>
+    <dl class="dl-horizontal">
+      <dt>Direccion:</dt>
+      <dd><%= @carrete.direccion %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Estado:</dt>
+      <% if @carrete.estado == 0 %>
+        <dd>En apuesta</dd>
+      <% else %>
+        <dd>Realizado</dd>
+      <% end %>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Capacidad:</dt>
+      <dd><%= @carrete.capacidad %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Costo:</dt>
+      <dd><%= @carrete.costo %></dd>
+    </dl>
+    <dl class="dl-horizontal">
+      <dt>Descripcion:</dt>
+      <dd><%= @carrete.descripcion %></dd>
+    </dl>
+    <% if current_user %>
+      <dl class="dl-horizontal">
+        <dt><%= button_to 'Inscribirse', carretes_inscribirse_path(:carrete_id => @carrete.id, :user_id => current_user), method: :post, :class => "btn btn-info", method: :POST %></dt>
+        <dd></dd>
+      </dl>
+    <% end %>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3>Comentarios</h3>
+    </div>
+    <br>
+    <ul>
+      <% @comentarios.each do |comentario|%>
+        <li><%= comentario.comentario %></li>
+      <% end %>
+    </ul>
+  </div>
+  <%= link_to 'Edit', edit_carrete_path(@carrete), :class => "btn btn-default" %>
+  <%= link_to 'Back', carretes_path(:bool => @bool), :class => "btn btn-default" %>
+  <%= link_to 'Comentar', new_comentariocarrete_path(:carrete => @carrete), :class => "btn btn-default" %>
+</div>

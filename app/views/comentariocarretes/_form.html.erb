@@ -1,0 +1,24 @@
+<%= form_with(model: comentariocarrete, url: comentariocarretes_create_path(:carrete => @carrete), :class => 'form-horizontal', local: true) do |form| %>
+  <% if comentariocarrete.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(comentariocarrete.errors.count, "error") %> prohibited this comentariocarrete from being saved:</h2>
+
+      <ul>
+      <% comentariocarrete.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :comentario, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.text_area :comentario, :class => "form-control", :placeholder => "Ejemplo: Fue un excelente carrete" %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Aceptar", :class => "btn btn-default"%>
+  </div>
+<% end %>
