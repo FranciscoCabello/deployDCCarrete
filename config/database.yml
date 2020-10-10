@@ -7,6 +7,9 @@ default: &default
   pool: 5
 
 production:
+  pool: 5
+  encoding: unicode
+  adapter: postgresql
   database: dcosg80e0vo8gg
   host: ec2-34-235-62-201.compute-1.amazonaws.com
   username: qpkmnmxnutfotz
