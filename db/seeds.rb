@@ -1,102 +1,49 @@
+# This file should contain all the record creation needed to seed the database with its default values.
+# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+#
+# Examples:
+#
+#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
+Comuna.create(nombre: 'Las Condes')
+Comuna.create(nombre: 'Vitacura')
+Comuna.create(nombre: 'San Joaquín')
+Comuna.create(nombre: 'Pedro Aguirre Cerda')
+Comuna.create(nombre: 'Lo Espejo')
+Comuna.create(nombre: 'San Ramón')
+Comuna.create(nombre: 'La Pintana')
+Comuna.create(nombre: 'La Cisterna')
+Comuna.create(nombre: 'El Bosque')
+Comuna.create(nombre: 'La Granja')
+Comuna.create(nombre: 'La Florida')
+Comuna.create(nombre: 'Peñalolén')
+Comuna.create(nombre: 'Ñuñoa')
+Comuna.create(nombre: 'Macul')
+Comuna.create(nombre: 'La Reina')
+Comuna.create(nombre: 'Providencia')
+Comuna.create(nombre: 'Lo Barnechea')
+Comuna.create(nombre: 'Renca')
+Comuna.create(nombre: 'Recoleta')
+Comuna.create(nombre: 'Quilicura')
+Comuna.create(nombre: 'Independencia')
+Comuna.create(nombre: 'Huechuraba')
+Comuna.create(nombre: 'Conchalí')
+Comuna.create(nombre: 'Santiago')
+Comuna.create(nombre: 'San Miguel')
+Comuna.create(nombre: 'Cerrillos')
+Comuna.create(nombre: 'Estación Central')
+Comuna.create(nombre: 'Maipú')
+Comuna.create(nombre: 'Cerro Navia')
+Comuna.create(nombre: 'Lo Prado')
+Comuna.create(nombre: 'Pudahuel')
+Comuna.create(nombre: 'Quinta Normal')
 
-servicios = ServiciosController.create([
-  {
-    email: "user1@gmail.com",
-    encrypted_password: "Hola",
-    nombre: "Juana Gonzalez",
-    edad: 23,
-    imagen: "url",
-    telefono: "+569XXXXXXX",
-    reset_password_token: "reset",
-    reset_password_sent_at:"",
-    remember_created_at: ""
-  },
-  {
-    email: "administrador@gmail.com",
-    encrypted_password: "Hola",
-    nombre: "Samuel Bendito",
-    edad: 36,
-    imagen: "url",
-    telefono: "+569XXXXXXX",
-    reset_password_token: "reset",
-    reset_password_sent_at:"",
-    remember_created_at: ""
-  },
-  {
-    email: "user2@gmail.com",
-    encrypted_password: "Hola",
-    nombre: "Antonio Perez",
-    edad: 66,
-    imagen: "url",
-    telefono: "+569XXXXXXX",
-    reset_password_token: "reset",
-    reset_password_sent_at:"",
-    remember_created_at: ""
-  }
-  ])
 
-  creadorcarretes = CreateCarretes.create([
-    {
-      titulo: "Partyhouse",
-      descripcion: "Mejor carrete de fin de semestre",
-      direccion: "Bustos 2020, Providencia",
-      capacidad: 50,
-      costo: 5000,
-      estado: 0,
-      imagen: "imagen_url",
-      user: 4
-    },
-    {
-      titulo: "Halloween",
-      descripcion: "Tinieblas de Lucifer",
-      direccion: "Infierno 666, La Reina",
-      capacidad: 150,
-      costo: 10000,
-      estado: 1,
-      imagen: "imagen_url",
-      user: 6
-    },
-    {
-      titulo: "Troleamos",
-      descripcion: "Spam, sino para que",
-      direccion: "Alameda 4039, Santiago",
-      capacidad: 20,
-      costo: 3000,
-      estado: 2,
-      imagen: "imagen_url",
-      user: 8
-    }
-    ])
 
-    creadorservicios = CreateServcios.create([
-      {
-        titulo: "Luces estrafalarias",
-        descripcion: "La iluminacion lo es todo, haz el mejor ambiente",
-        capacidad: 150,
-        costo: 30000,
-        valoracion: 4.5,
-        imagen: "imagen_url",
-        categoria: "normal",
-        user: 8
-      },
-      {
-        titulo: "Bartender",
-        descripcion: "Ofrecemos los mejores bartenders a nivel internacional",
-        capacidad: 50,
-        costo: 50000,
-        valoracion: 4.8,
-        imagen: "imagen_url",
-        categoria: "premium",
-        user: 8
-      },
-      {
-        titulo: "Fuegos artificiales",
-        descripcion: "Para  grandes celebraciones y fuertes emociones",
-        capacidad: 200,
-        costo: 100000,
-        valoracion: 4.95,
-        imagen: "imagen_url",
-        categoria: "premium",
-        user: 8
-      }
-      ])
+User.create(nombre: 'Jorge Zabaleta',
+             email: 'zabaleta@gmail.com',
+             edad: 35,
+             imagen: 'https://upload.wikimedia.org/wikipedia/commons/6/61/01Jorge_Zabaleta.png',
+             telefono: 966261252,
+             admin: true,
+             password: '123456',
+             password_confirmation: '123456')

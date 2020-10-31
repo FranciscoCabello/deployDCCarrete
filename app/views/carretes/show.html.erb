@@ -1,53 +1,114 @@
-<p id="notice"><%= notice %></p>
-<div class="col-md-8">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Informacion Carrete: <%= @carrete.titulo %> - <%= image_tag(@carrete.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></h3>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Informacion Carrete: <%= @carrete.titulo %> - <%= image_tag(@carrete.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <dl class="dl-horizontal">
+            <dt>Comuna:</dt>
+            <dd><%= @carrete.comuna.nombre %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Direccion:</dt>
+            <dd><%= @carrete.direccion %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Estado:</dt>
+            <% if @carrete.estado == 0 %>
+              <dd>En apuesta</dd>
+            <% else %>
+              <dd>Realizado</dd>
+            <% end %>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Capacidad:</dt>
+            <dd><%= @carrete.capacidad %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Costo:</dt>
+            <dd><%= @carrete.costo %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Descripcion:</dt>
+            <dd><%= @carrete.descripcion %></dd>
+          </dl>
+        </div>
+        <div class="row">
+          <% if current_user %>
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+              <%= button_to 'Inscribirse', carretes_inscribirse_path(:carrete_id => @carrete.id, :user_id => current_user), method: :post, :class => "btn btn-info", method: :POST %>
+            </div>
+            <% if @carrete.user == current_user.id %>
+              <div class="col-md-1">
+                <%= button_to 'Inscribir servicio', carretes_agregar_servicio_path(:carrete_id => @carrete.id, :user_id => current_user), method: :post, :class => "btn btn-info", method: :POST %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <br>
-    <dl class="dl-horizontal">
-      <dt>Direccion:</dt>
-      <dd><%= @carrete.direccion %></dd>
-    </dl>
-    <dl class="dl-horizontal">
-      <dt>Estado:</dt>
-      <% if @carrete.estado == 0 %>
-        <dd>En apuesta</dd>
-      <% else %>
-        <dd>Realizado</dd>
-      <% end %>
-    </dl>
-    <dl class="dl-horizontal">
-      <dt>Capacidad:</dt>
-      <dd><%= @carrete.capacidad %></dd>
-    </dl>
-    <dl class="dl-horizontal">
-      <dt>Costo:</dt>
-      <dd><%= @carrete.costo %></dd>
-    </dl>
-    <dl class="dl-horizontal">
-      <dt>Descripcion:</dt>
-      <dd><%= @carrete.descripcion %></dd>
-    </dl>
-    <% if current_user %>
-      <dl class="dl-horizontal">
-        <dt><%= button_to 'Inscribirse', carretes_inscribirse_path(:carrete_id => @carrete.id, :user_id => current_user), method: :post, :class => "btn btn-info", method: :POST %></dt>
-        <dd></dd>
-      </dl>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Servicios contratados</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Ver</th>
+            <% if @carrete.user == current_user.id %>
+              <th>Eliminar</th>
+            <% end %>
+          </tr>
+          <% @servicios_contratados.each do |servicio| %>
+            <tr>
+              <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></td>
+              <td><%= servicio.nombre %></td>
+              <td><%= servicio.descripcion %></td>
+              <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
+              <% if @carrete.user == current_user.id %>
+                <td>Eliminar contrato</td>
+              <% end %>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Comentarios</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+          <% @comentarios.each do |comentario|%>
+            <li><%= comentario.comentario %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <% if @carrete.user == current_user.id %>
+      <%= link_to 'Edit', edit_carrete_path(@carrete), :class => "btn btn-default" %>
+      <%= link_to 'Back', carretes_path(:bool => @bool), :class => "btn btn-default" %>
+      <%= link_to 'Comentar', new_comentariocarrete_path(:carrete => @carrete), :class => "btn btn-default" %>
+    <% else %>
+      <%= link_to 'Back', carretes_path(:bool => @bool), :class => "btn btn-default" %>
+      <%= link_to 'Comentar', new_comentariocarrete_path(:carrete => @carrete), :class => "btn btn-default" %>
     <% end %>
   </div>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3>Comentarios</h3>
-    </div>
-    <br>
-    <ul>
-      <% @comentarios.each do |comentario|%>
-        <li><%= comentario.comentario %></li>
-      <% end %>
-    </ul>
-  </div>
-  <%= link_to 'Edit', edit_carrete_path(@carrete), :class => "btn btn-default" %>
-  <%= link_to 'Back', carretes_path(:bool => @bool), :class => "btn btn-default" %>
-  <%= link_to 'Comentar', new_comentariocarrete_path(:carrete => @carrete), :class => "btn btn-default" %>
 </div>

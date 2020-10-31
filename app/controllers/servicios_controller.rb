@@ -4,17 +4,17 @@ class ServiciosController < ApplicationController
   # GET /servicios
   # GET /servicios.json
   def index
-    @bool = params[:bool]
+    @servicios = Servicio.where(aprobado: 1)
 
-    if current_user && @bool == '0'
-      @servicios = Servicio.where(user: current_user.id)
+    # if current_user && @bool == '0'
+    #   @servicios = Servicio.where(user: current_user.id)
 
-    elsif current_user && @bool == '1'
-      @servicios = Servicio.where.not(user: current_user.id)
+    # elsif current_user && @bool == '1'
+    #   @servicios = Servicio.where.not(user: current_user.id)
 
-    else
-      @servicios = Servicio.all
-    end
+    # else
+    #   @servicios = Servicio.all
+    # end
   end
 
   # GET /servicios/1
@@ -27,17 +27,41 @@ class ServiciosController < ApplicationController
   # GET /servicios/new
   def new
     @servicio = Servicio.new
+    coms = Comuna.all
+    @comunas = []
+    coms.each do |comuna|
+      @comunas.append([comuna.nombre, comuna.id])
+    end
   end
 
   # GET /servicios/1/edit
   def edit
+    #<td><%= link_to 'Edit', edit_servicio_path(servicio), :class => 'btn btn-default' %></td>
+    coms = Comuna.all
+    @comunas = []
+    coms.each do |comuna|
+      @comunas.append([comuna.nombre, comuna.id])
+    end
   end
 
   # POST /servicios
   # POST /servicios.json
   def create
     @servicio = Servicio.new(servicio_params)
+    params[:servicio].each do |parametro|
+      if parametro[0].to_i.is_a? Integer
+        if parametro[1] == '1'
+          @servicio.comunas << Comuna.find(parametro[0].to_i)
+        end
+      end
+    end
+    @servicio.valoracion = 0
     @servicio.user = current_user
+    if current_user.admin == true
+      @servicio.aprobado = 1
+    else
+      @servicio.aprobado = 0
+    end
 
     respond_to do |format|
       if @servicio.save
@@ -48,6 +72,13 @@ class ServiciosController < ApplicationController
         format.json { render json: @servicio.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def aprobar
+    @servicio = Servicio.find(params[:servicio])
+    @servicio.update_attribute(:aprobado, 1)
+    @servicios = Servicio.all
+    redirect_to :controller => 'pages', :action => 'admin'
   end
 
   # PATCH/PUT /servicios/1

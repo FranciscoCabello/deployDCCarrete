@@ -1,4 +1,4 @@
-<%= form_with(model: carrete, local: true, :class => 'form-horizontal') do |form| %>
+<%= form_with(model: carrete, local: true, :class => 'form-horizontal', :method=>'post', :url=> carretes_path(:comuna => @comuna)) do |form| %>
   <% if carrete.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(carrete.errors.count, "error") %> prohibited this carrete from being saved:</h2>
@@ -26,6 +26,20 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :comuna, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.select(:comuna, options_for_select(@comunas), :class => "form-control") %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :fecha, :class => "col-sm-2 control-label" %>
+    <div class="col-sm-10">
+      <%= form.date_field :fecha,:class => "form-control" %>
+    </div>
+  </div>
+
+  <div class="form-group">
     <%= form.label :direccion, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= form.text_field :direccion, :class => "form-control", :placeholder => "Ejemplo: Avenida vitacura 254, Las condes"  %>
@@ -43,14 +57,6 @@
     <%= form.label :costo, :class => "col-sm-2 control-label" %>
     <div class="col-sm-10">
       <%= form.number_field :costo, :class => "form-control", :placeholder => "Ejemplo: 100 (Numero mayor a 0)"  %>
-    </div>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :estado, :class => "col-sm-2 control-label"%>
-    <div class="col-sm-10">
-      <%= form.select :estado, [0, 1], :class => "form-control" %>
-      (0: En apuesta, 1: Realizado)
     </div>
   </div>
 

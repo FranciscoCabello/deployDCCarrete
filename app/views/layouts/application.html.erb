@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
 
   <body>
@@ -18,13 +18,14 @@
           </div>
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-              <li><%= link_to 'Carretes creados', carretes_path(:bool => 0) %></li>
-              <li><%= link_to 'Servicios creados', servicios_path(:bool => 0) %></li>
+              <li><%= link_to 'Carretes', carretes_path %></li>
+              <li><%= link_to 'Servicios', servicios_path %></li>
+              <% if current_user.admin %>
+                <li><%= link_to 'Admin', pages_admin_path %></li>
+              <% end %>
               <li><%= link_to 'Perfil', user_profile_path %></li>
-              <li><%= link_to 'Actualizar informacion', edit_user_registration_path %></li>
               <li><%= link_to 'Sign out', destroy_user_session_path , method: :delete%></li>
             <% else %>
-              <li><%= link_to 'Carretes', carretes_path %></li>
               <li><%= link_to 'Servicios', servicios_path %></li>
               <li><%= link_to 'Sign Up', new_user_registration_path %></li>
               <li><%= link_to 'Sign In', new_user_session_path %>
@@ -33,7 +34,7 @@
         </div>
       </div>
     </nav>
-    <div class="container">
+    <div class="container-fluid">
       <%= render 'layouts/alerts' %>
       <%= yield %>
     </div>

@@ -1,0 +1,26 @@
+
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Apuesta al carrete <%= @carrete.titulo %>!</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_with(local: true, :class => 'form-horizontal', :method=>'post', :url=> carretes_ingresar_apuesta_path(:carrete => @carrete)) do |form| %>
+          <div class="form-group">
+            <%= form.label :apuesta, :class => "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= form.number_field :apuesta, :class => "form-control", :placeholder => "Ejemplo: 100000 (Numero mayor a 0)"  %>
+            </div>
+          </div>
+          <div class="actions">
+            <%= form.submit "Aceptar", :class => 'btn btn-default'%>
+            <%= link_to 'Back', carretes_path, :class => 'btn btn-danger' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     resources :users
     resources :servicios
     resources :comentariocarretes
+    resources :comunas
   end
 
   resources :users do
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
   resources :servicios do
     resources :carretes
     resources :comentarioservicios
+    resources :comunas
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -35,6 +37,10 @@ Rails.application.routes.draw do
   post 'carretes/inscribirse'
   post 'comentariocarretes/create'
   post 'comentarioservicios/create'
-
-
+  get 'pages/admin'
+  post 'carretes/aprobar'
+  post 'servicios/aprobar'
+  post 'carretes/agregar_servicio'
+  post 'carretes/agregar_servicio_def'
+  post 'carretes/ingresar_apuesta'
 end

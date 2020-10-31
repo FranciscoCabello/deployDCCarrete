@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_09_204643) do
+ActiveRecord::Schema.define(version: 2020_10_27_163646) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bets", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "carrete_id"
+    t.integer "bet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "carretes", force: :cascade do |t|
     t.string "titulo"
@@ -26,6 +34,11 @@ ActiveRecord::Schema.define(version: 2020_10_09_204643) do
     t.integer "user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "fecha"
+    t.bigint "comuna_id"
+    t.integer "aprobado"
+    t.string "code"
+    t.index ["comuna_id"], name: "index_carretes_on_comuna_id"
   end
 
   create_table "carretes_servicios", id: false, force: :cascade do |t|
@@ -62,6 +75,17 @@ ActiveRecord::Schema.define(version: 2020_10_09_204643) do
     t.index ["user_id"], name: "index_comentarioservicios_on_user_id"
   end
 
+  create_table "comunas", force: :cascade do |t|
+    t.string "nombre"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comunas_servicios", id: false, force: :cascade do |t|
+    t.bigint "comuna_id", null: false
+    t.bigint "servicio_id", null: false
+  end
+
   create_table "servicios", force: :cascade do |t|
     t.string "nombre"
     t.text "descripcion"
@@ -74,6 +98,7 @@ ActiveRecord::Schema.define(version: 2020_10_09_204643) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.integer "aprobado"
     t.index ["user_id"], name: "index_servicios_on_user_id"
   end
 
@@ -89,10 +114,12 @@ ActiveRecord::Schema.define(version: 2020_10_09_204643) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carretes", "comunas"
   add_foreign_key "comentariocarretes", "carretes"
   add_foreign_key "comentariocarretes", "users"
   add_foreign_key "comentarioservicios", "servicios"

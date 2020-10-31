@@ -1,33 +1,151 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3><%= image_tag(current_user.imagen, :class => 'img-circle', :border => 3, :height => 80, :width => 80 ) %> Informacion perfil:</h3>
+      </div>
+      <div class="panel-body">
+        <form>
+          <fieldset disabled>
+            <div class="form-group">
+              <label for="disabledTextInput">Nombre</label>
+              <input type="text" id=<%= current_user.nombre %> class="form-control" placeholder=<%= current_user.nombre %>>
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">Email</label>
+              <input type="text" id=<%= current_user.email %> class="form-control" placeholder=<%= current_user.email %>>
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">Edad</label>
+              <input type="text" id=<%= current_user.edad %> class="form-control" placeholder=<%= current_user.edad %>>
+            </div>
+            <div class="form-group">
+              <label for="disabledTextInput">Telefono</label>
+              <input type="text" id=<%= current_user.telefono %> class="form-control" placeholder=<%= current_user.telefono %>>
+            </div>
 
-<div class="col-md-10">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3><%= image_tag(current_user.imagen, :class => 'img-circle', :border => 3, :height => 80, :width => 80 ) %> Informacion perfil:</h3>
+          </fieldset>
+        </form>
+        <%= link_to 'Actualizar informacion', edit_user_registration_path, :class => "btn btn-default" %>
+      </div>
     </div>
-    <div class="panel-body">
-      <form>
-        <fieldset disabled>
-          <div class="form-group">
-            <label for="disabledTextInput">Nombre</label>
-            <input type="text" id=<%= current_user.nombre %> class="form-control" placeholder=<%= current_user.nombre %>>
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">Email</label>
-            <input type="text" id=<%= current_user.email %> class="form-control" placeholder=<%= current_user.email %>>
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">Edad</label>
-            <input type="text" id=<%= current_user.edad %> class="form-control" placeholder=<%= current_user.edad %>>
-          </div>
-          <div class="form-group">
-            <label for="disabledTextInput">Telefono</label>
-            <input type="text" id=<%= current_user.telefono %> class="form-control" placeholder=<%= current_user.telefono %>>
-          </div>
-
-        </fieldset>
-      </form>
-      <%= link_to 'Actualizar informacion', edit_user_registration_path, :class => "btn btn-default" %>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Carretes propios:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th>Inscribir servicio</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+          <% @carretes_propios.each do |carrete| %>
+            <tr>
+              <td><%= carrete.titulo %></td>
+              <td><%= carrete.capacidad %></td>
+              <td><%= carrete.costo %></td>
+              <td><%= button_to 'Inscribir servicio', carretes_agregar_servicio_path(:carrete_id => carrete.id, :user_id => current_user), method: :post, :class => "btn btn-info", method: :POST %></td>
+              <td><%= link_to 'Edit', edit_carrete_path(carrete), :class => "btn btn-default" %></td>
+              <td><%= link_to 'Destroy', carrete, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
     </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Servicios:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th>Ver</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+          <% @servicios_propios.each do |servicio| %>
+            <tr>
+              <td><%= servicio.nombre %></td>
+              <td><%= servicio.capacidad %></td>
+              <td><%= servicio.costo %></td>
+              <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
+              <td><%= link_to 'Edit', edit_servicio_path(servicio), :class => 'btn btn-default' %></td>
+              <td><%= link_to 'Destroy', servicio, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-2">
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Carretes en apuesta</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th>Apuesta</th>
+            <th>Código</th>
+          </tr>
+          <% @carretes_inscritos.each do |carrete| %>
+            <tr>
+              <td><%= carrete.titulo %></td>
+              <td><%= carrete.capacidad %></td>
+              <td><%= carrete.costo %></td>
+              <td><%= @codigos[carrete.id][1] %></td>
+              <td><%= @codigos[carrete.id][0] %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Carretes asistidos</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+          </tr>
+          <% @carretes_asistidos.each do |carrete| %>
+            <tr>
+              <td><%= carrete.titulo %></td>
+              <td><%= carrete.capacidad %></td>
+              <td><%= carrete.costo %></td>
+              <td>Editar</td>
+              <td>Eliminar</td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2">
   </div>
 </div>

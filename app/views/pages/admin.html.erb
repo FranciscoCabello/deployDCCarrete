@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Carretes en postulacion:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @carretes.each do |carrete| %>
+            <tr>
+              <td><%= carrete.titulo %></td>
+              <td><%= carrete.capacidad %></td>
+              <td><%= carrete.costo %></td>
+              <td><%= button_to 'Aprobar', carretes_aprobar_path(:carrete => carrete.id), :class => "btn btn-info", method: :POST %></td>
+              <td><%= link_to 'Eliminar', carrete, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Servicios en postulacion:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th></th>
+            <th></th>
+          </tr>
+          <% @servicios.each do |servicio| %>
+            <tr>
+              <td><%= servicio.nombre %></td>
+              <td><%= servicio.capacidad %></td>
+              <td><%= servicio.costo %></td>
+              <td><%= button_to 'Aprobar', servicios_aprobar_path(:servicio => servicio.id), :class => "btn btn-info", method: :POST %></td>
+              <td><%= link_to 'Eliminar', servicio, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

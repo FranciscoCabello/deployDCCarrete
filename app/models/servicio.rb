@@ -4,4 +4,5 @@ class Servicio < ApplicationRecord
     belongs_to :user
     has_and_belongs_to_many :carretes
     has_many :comentarioservicios
+    has_and_belongs_to_many :comunas
 end
