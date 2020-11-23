@@ -80,7 +80,7 @@
           </tr>
           <% @servicios_contratados.each do |servicio| %>
             <tr>
-              <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></td>
+              <td><%= image_tag(servicio.avatar, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></td>
               <td><%= servicio.nombre %></td>
               <td><%= servicio.descripcion %></td>
               <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
