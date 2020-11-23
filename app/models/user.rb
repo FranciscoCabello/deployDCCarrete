@@ -9,4 +9,5 @@ class User < ApplicationRecord
   has_many :servicios
   has_many :comentariocarretes
   has_many :comentarioservicios
+  has_one_attached :avatar
 end

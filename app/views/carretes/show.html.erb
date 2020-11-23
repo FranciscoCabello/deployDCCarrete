@@ -4,7 +4,7 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Informacion Carrete: <%= @carrete.titulo %> - <%= image_tag(@carrete.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></h3>
+        <h3>Informacion Carrete: <%= @carrete.titulo %> - <%= image_tag(@carrete.avatar, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) if @carrete.avatar.attached?%></h3>
       </div>
       <div class="panel-body">
         <div class="row">
@@ -35,6 +35,15 @@
           <dl class="dl-horizontal">
             <dt>Descripcion:</dt>
             <dd><%= @carrete.descripcion %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Temperatura:</dt>
+            <dd>Max: <%= @weather_temp_max.round() %></dd>
+            <dd>Min: <%= @weather_temp_min.round() %></dd>
+          </dl>
+          <dl class="dl-horizontal">
+            <dt>Clima:</dt>
+            <dd><%= @weather_description %></dd>
           </dl>
         </div>
         <div class="row">
@@ -93,11 +102,16 @@
         <h3>Comentarios</h3>
       </div>
       <div class="panel-body">
-        <ul>
           <% @comentarios.each do |comentario|%>
-            <li><%= comentario.comentario %></li>
+          <div class="col-md-11">
+            <div class="col-md-7"><%= comentario.comentario %></div>
+            <div class="col-md-1"><%= User.find(comentario.user_id).nombre[0, 5] %></div>
+            <div class="col-md-3"><%= comentario.created_at.strftime("%d %B %Y") %></div>
+              <% if @carrete.user == current_user.id || current_user.admin %>
+                <div class="col-md-1"><%= button_to 'Eliminar', comentariocarretes_destroy_path(:comentario => comentario.id, :carrete => @carrete), method: :post, :class => 'btn btn-danger', method: :POST %></div>
+              <% end %>
+          </div>
           <% end %>
-        </ul>
       </div>
     </div>
   </div>

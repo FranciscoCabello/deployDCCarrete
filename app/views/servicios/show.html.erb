@@ -3,7 +3,7 @@
   <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h3>Informacion Servicio: <%= @servicio.nombre %> - <%= image_tag(@servicio.imagen, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) %></h3>
+        <h3>Informacion Servicio: <%= @servicio.nombre %> - <%= image_tag(@servicio.avatar, :class => 'img-circle', :border => 3, :height => 60, :width => 60 ) if @servicio.avatar.attached? %></h3>
       </div>
       <br>
       <dl class="dl-horizontal">
@@ -34,11 +34,16 @@
         <h3>Comentarios</h3>
       </div>
       <div class="panel-body">
-        <ul>
           <% @comentarios.each do |comentario|%>
-            <li><%= comentario.comentario %></li>
+          <div class="col-md-11">
+            <div class="col-md-5"><%= comentario.comentario %></div>
+            <div class="col-md-1"><%= User.find(comentario.user_id).nombre[0, 5] %></div>
+            <div class="col-md-4"><%= comentario.created_at.strftime("%d %B %Y") %></div>
+              <% if @servicio.user_id == current_user.id || current_user.admin %>
+              <div class="col-md-1"><%= button_to 'Eliminar', comentarioservicios_destroy_path(:comentario => comentario.id, :servicio => @servicio), method: :post, :class => 'btn btn-danger', method: :POST %></div>
+              <% end %>
+          </div>
           <% end %>
-        </ul>
       </div>
     </div>
   </div>

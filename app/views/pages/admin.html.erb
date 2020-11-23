@@ -54,3 +54,39 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Usuarios:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped">
+          <tr>
+            <th></th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Telefono</th>
+            <th>Creacion</th>
+            <th></th>
+          </tr>
+          <% @usuarios.each do |user| %>
+            <% if !user.admin %>
+              <tr>
+                <td><%= image_tag(user.avatar, :class => 'img-circle', :border => 3, :height => 50, :width => 50 ) if user.avatar.attached? %></td>
+                <td><%= user.nombre %></td>
+                <td><%= user.email %></td>
+                <td><%= user.telefono %></td>
+                <td><%= user.created_at.strftime("%d %B %Y") %></td>
+                <td><%= button_to 'Eliminar', pages_destroyselecteduser_path(:destroyuser => user.id), method: :post, :class => 'btn btn-danger', method: :POST %></td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+
+  </div>
+  <div class="col-md-3"></div>
+</div>

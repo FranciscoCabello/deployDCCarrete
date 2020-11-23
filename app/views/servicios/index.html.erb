@@ -13,14 +13,16 @@
         <th>Costo</th>
         <th>Valoracion</th>
         <th>Categoria</th>
-        <th colspan="3"></th>
+        <% if current_user %>
+          <th colspan="3"></th>
+        <% end %>
       </tr>
       </thead>
       <tbody>
       <% if current_user %>
         <% @servicios.each do |servicio| %>
           <tr>
-            <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
+            <td><%= image_tag(servicio.avatar, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) if servicio.avatar.attached? %></td>
             <td><%= servicio.nombre %></td>
             <td><%= servicio.descripcion %></td>
             <td><%= servicio.capacidad %></td>
@@ -38,14 +40,13 @@
       <% else %>
         <% @servicios.each do |servicio| %>
           <tr>
-            <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
+            <td><%= image_tag(servicio.avatar, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
             <td><%= servicio.nombre %></td>
             <td><%= servicio.descripcion %></td>
             <td><%= servicio.capacidad %></td>
             <td><%= servicio.costo %></td>
             <td><%= servicio.valoracion %></td>
             <td><%= servicio.categoria %></td>
-            <td><%= link_to 'Show', servicio, :class => 'btn btn-default' %></td>
           </tr>
         <% end %>
       <% end %>

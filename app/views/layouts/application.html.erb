@@ -6,7 +6,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   </head>
 
   <body>
@@ -23,6 +23,14 @@
               <% if current_user.admin %>
                 <li><%= link_to 'Admin', pages_admin_path %></li>
               <% end %>
+              <li>
+                <%= form_with url: pages_resultado_buscador_path, method: :post, :class => "navbar-form navbar-left" do |f| %>
+                  <div class="form-group">
+                    <%= f.text_field :busqueda, :placeholder => 'Comuna o nombre' %>
+                  </div>
+                  <%= f.submit "Ir", :class => "btn btn-default"%>
+                <% end %>
+              </li>
               <li><%= link_to 'Perfil', user_profile_path %></li>
               <li><%= link_to 'Sign out', destroy_user_session_path , method: :delete%></li>
             <% else %>

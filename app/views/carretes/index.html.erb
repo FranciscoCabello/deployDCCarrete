@@ -20,7 +20,7 @@
       <% if current_user %>
         <% @carretes.each do |carrete| %>
           <tr>
-            <td><%= image_tag(carrete.imagen, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
+            <td><%= image_tag(carrete.avatar, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) if carrete.avatar.attached? %></td>
             <td><%= carrete.titulo %></td>
             <td><%= carrete.descripcion %></td>
             <td><%= carrete.direccion %></td>

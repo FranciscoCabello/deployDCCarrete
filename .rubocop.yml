@@ -1,4 +1,4 @@
-inherit_from: .rubocop_todo.yml
+
 
 AllCops:
   Includes:
@@ -10,3 +10,4 @@ AllCops:
     - config/**
     - script/**
     - vendor/**/* # Circle adds the rubies here
+

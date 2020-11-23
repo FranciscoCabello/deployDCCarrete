@@ -5,4 +5,5 @@ class Servicio < ApplicationRecord
     has_and_belongs_to_many :carretes
     has_many :comentarioservicios
     has_and_belongs_to_many :comunas
+    has_one_attached :avatar
 end

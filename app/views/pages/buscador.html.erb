@@ -1,0 +1,6 @@
+<h1>BUSCADOR</h1>
+
+<%= form_with url: pages_resultado_buscador_path, method: :post do |f| %>
+    <%= f.text_field :busqueda %>
+    <%= f.submit "Buscar por comuna o nombre", :class => "btn btn-default"%>
+<% end %>

@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Carretes:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Nombre</th>
+            <th>Capacidad</th>
+            <th>Costo</th>
+            <th></th>
+          </tr>
+            <% @carretes_validos.each do |carrete| %>
+              <tr>
+                <td><%= carrete.titulo %></td>
+                <td><%= carrete.capacidad %></td>
+                <td><%= carrete.costo %></td>
+                <td><%= link_to 'Show', carrete_url(:id => carrete.id, :bool => @bool), :class => 'btn btn-default' %></td>
+              </tr>
+            <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3>Servicios:</h3>
+      </div>
+      <div class="panel-body">
+        <table class="table table-condensed">
+          <tr>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Costo</th>
+          </tr>
+          <% @servicios_validos.each do |servicio| %>
+            <tr>
+              <td><%= servicio.nombre %></td>
+              <td><%= servicio.descripcion %></td>
+              <td><%= servicio.costo %></td>
+              <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
