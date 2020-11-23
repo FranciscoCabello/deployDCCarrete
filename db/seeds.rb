@@ -146,20 +146,25 @@ Comentariocarrete.create(user: 2,
           user_id: 2,
           carrete_id: 3)
 
-#Comunas_servicio.create(comuna_id: 6,
-#                        servicio_id: 1)
-#Comunas_servicio.create(comuna_id: 6,
-#                        servicio_id: 2)
+Servicio.create(nombre: "Luce",
+            descripcion: "1La iluminacion lo es todo, haz el mejor ambiente",
+            capacidad: 150,
+            costo: 30000,
+            valoracion: 4,
+            categoria: "",
+            user: 2,
+            user_id: 2,
+            aprobado: 1)
 
-Servicio.create(nombre: "Luces estrafalarias",
-                descripcion: "La iluminacion lo es todo, haz el mejor ambiente",
-                capacidad: 150,
-                costo: 30000,
-                valoracion: 4.5,
-                categoria: 1,
-                user: 1,
-                user_id: 1,
-                aprobado: 0)
+Servicio.create(nombre: "Luces",
+              descripcion: "La iluminacion lo es todo, haz el mejor ambiente",
+              capacidad: 150,
+              costo: 30000,
+              valoracion: 4.5,
+              categoria: "VIP",
+              user: 3,
+              user_id: 3,
+              aprobado: 1)
 
 
 Servicio.create(nombre: "Bartender",
@@ -174,11 +179,11 @@ Servicio.create(nombre: "Bartender",
 
 
 Servicio.create(nombre: "Fuegos artificiales",
-                descripcion: "Para  grandes celebraciones y fuertes emociones",
-                capacidad: 200,
-                costo: 100000,
-                valoracion: 4.95,
-                categoria: "",
-                user: 2,
-                user_id: 2,
-                aprobado: 0)
+              descripcion: "Para grandes celebraciones y fuertes emociones",
+              capacidad: 200,
+              costo: 100000,
+              valoracion: 4.95,
+              categoria: "",
+              user: 2,
+              user_id: 2,
+              aprobado: 1)
