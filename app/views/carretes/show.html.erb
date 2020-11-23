@@ -74,9 +74,7 @@
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Ver</th>
-            <% if @carrete.user == current_user.id %>
-              <th>Eliminar</th>
-            <% end %>
+            
           </tr>
           <% @servicios_contratados.each do |servicio| %>
             <tr>
@@ -84,9 +82,7 @@
               <td><%= servicio.nombre %></td>
               <td><%= servicio.descripcion %></td>
               <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
-              <% if @carrete.user == current_user.id %>
-                <td>Eliminar contrato</td>
-              <% end %>
+            
             </tr>
           <% end %>
         </table>
