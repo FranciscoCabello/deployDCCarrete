@@ -20,7 +20,7 @@
       <% if current_user %>
         <% @servicios.each do |servicio| %>
           <tr>
-            <td><%= image_tag(servicio.imagen, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
+            <td><%= image_tag(servicio.avatar, :class => 'img-circle', :border => 3, :height => 45, :width => 45 ) %></td>
             <td><%= servicio.nombre %></td>
             <td><%= servicio.descripcion %></td>
             <td><%= servicio.capacidad %></td>
