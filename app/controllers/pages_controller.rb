@@ -43,7 +43,7 @@ class PagesController < ApplicationController
         if @apuestas_filtradas_usuario.length > 0
           @codigos[carrete.id] = ["Asistes!", @apuestas_filtradas_usuario[0].bet]
         else
-          @codigos[carrete.id] = ["Fuera!", @apuestas_filtradas_usuario[0].bet]
+          @codigos[carrete.id] = ["Fuera!", @apuestas[0].bet]
         end
       end
 
@@ -101,7 +101,7 @@ class PagesController < ApplicationController
 
   def display_resultado_buscador
     if current_user
-      @busqueda = session[:passed_parameter].titleize
+      @busqueda = session[:passed_parameter].downcase
       if @busqueda == ''
         @carretes_validos = []
         @servicios_validos = []
@@ -111,18 +111,18 @@ class PagesController < ApplicationController
 
         @carretes_validos = []
         @carretes.each do |carrete|
-          if (carrete.comuna.nombre.include? @busqueda) || (carrete.titulo.include? @busqueda)
+          if (carrete.comuna.nombre.downcase.include? @busqueda) || (carrete.titulo.downcase.include? @busqueda)
             @carretes_validos.append(carrete)
           end
         end
 
         @servicios_validos = []
         @servicios.each do |servicio|
-          if servicio.nombre.include? @busqueda
+          if servicio.nombre.downcase.include? @busqueda
             @servicios_validos.append(servicio)
           end
           servicio.comunas.each do |comuna|
-            if comuna.nombre.include? @busqueda
+            if comuna.nombre.downcase.include? @busqueda
               @servicios_validos.append(servicio)
             end
           end
@@ -176,28 +176,4 @@ class PagesController < ApplicationController
       end
     end
   end
-
-  # private
-  # def request_api(url)
-  #   puts 'REQUEST API'
-  #   @response = Excon.get(
-  #     url,
-  #     headers: {
-  #       'X-RapidAPI-Host' => URI.parse(url).host,
-  #       'X-RapidAPI-Key' =>  "1a241e5d7e24102523c54676905b3fea"
-  #     }
-  #   )
-  #   puts @response
-  #   return nil if @response.status != 200
-  #   puts JSON.parse(@response.body)
-  #   JSON.parse(@response.body)
-  # end
-
-  # def find_country(name)
-  #   puts 'FIND COUNTRY'
-  #   request_api(
-  #     "https://restcountries-v1.p.rapidapi.com/name/#{URI.encode(name)}"
-  #   )
-  # end
-
 end

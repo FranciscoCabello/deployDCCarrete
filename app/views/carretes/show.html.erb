@@ -74,7 +74,6 @@
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Ver</th>
-            
           </tr>
           <% @servicios_contratados.each do |servicio| %>
             <tr>
@@ -82,7 +81,6 @@
               <td><%= servicio.nombre %></td>
               <td><%= servicio.descripcion %></td>
               <td><%= link_to 'Show', servicio_url(:id => servicio.id, :bool => @bool), :class => 'btn btn-default' %></td>
-            
             </tr>
           <% end %>
         </table>
